@@ -1,4 +1,5 @@
 .task{
-    color: green;
+    color: blue;
+    font-weight: bold;
     outline: solid red 1px;
 }
