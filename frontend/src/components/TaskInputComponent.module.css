@@ -1,5 +1,26 @@
-.task{
-    color: blue;
-    font-weight: bold;
-    outline: solid red 1px;
+.form {
+  width: 100%;
+}
+
+.taskInputContainer {
+  display: flex;
+}
+
+.taskInputButton {
+  padding: 4px 10px 0 10px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: rgb(92, 92, 92);
+}
+
+.taskInput {
+  flex: 1;
+  border-radius: 5px;
+  width: 100%;
+  background: lightgray;
+  padding: 7px;
+  color: rgb(92, 92, 92);
+  border: 1px solid #b9b9b9;
 }

@@ -1,0 +1,44 @@
+.taskContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+}
+
+.completed {
+  background: lightgreen;
+}
+
+.incomplete {
+  background: lightblue;
+}
+
+.taskWrap {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0 6px;
+}
+
+.task {
+  padding: 5px;
+  color: rgb(60, 60, 60);
+}
+
+.taskInput {
+  border-radius: 5px;
+  width: 100%;
+  background: transparent;
+  color: rgb(92, 92, 92);
+  border: 1px solid #8a8a8a;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.iconButton {
+  font-size: 18px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  line-height: 1;
+}
