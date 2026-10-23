@@ -1,0 +1,26 @@
+.tabs {
+  outline: solid rgb(156, 156, 156) 1px;
+  display: flex;
+  border: 1px;
+}
+
+.tabButton {
+  flex: 1;
+  color: rgb(92, 92, 92);
+  font-weight: bolder;
+  padding: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.activeAll {
+  background-color: #efefef;
+}
+
+.activeCompleted {
+  background-color: lightgreen;
+}
+
+.activeIncomplete {
+  background-color: lightblue;
+}
