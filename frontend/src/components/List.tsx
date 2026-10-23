@@ -67,7 +67,7 @@ export function List() {
     const listElement = (
         <div className={styles.container}>
             <div className={styles.mainWrap}>
-                <p className={styles.mainTitle}>LISTA DE TAREFAS CLOUD NETLIFY</p>
+                <p className={styles.mainTitle}>LISTA DE TAREFAS CLOUD!!!</p>
                 <TabsComponent filter={filter} onChangeFilter={setFilter} />
                 <div className={styles.tasksContainer} >
                     {filteredTasks.map((task)=>(
