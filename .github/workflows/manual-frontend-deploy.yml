@@ -1,0 +1,63 @@
+name: Deploy manual do frontend no Netlify
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch exata que será compilada e publicada no Netlify'
+        required: true
+        default: 'master'
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: netlify-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: deploy-frontend
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Baixar a branch escolhida
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Instalar dependências
+        working-directory: frontend
+        run: npm ci
+
+      - name: Gerar build estático
+        working-directory: frontend
+        run: npm run build
+
+      - name: Registrar a versão publicada
+        env:
+          SELECTED_BRANCH: ${{ inputs.branch }}
+        run: |
+          echo "### Deploy manual" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Branch solicitada: \`$SELECTED_BRANCH\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Commit compilado: \`$(git rev-parse --short HEAD)\`" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publicar no Netlify
+        working-directory: frontend
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          npx --yes netlify-cli@latest deploy \
+            --prod \
+            --dir=out \
+            --no-build
